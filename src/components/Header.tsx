@@ -1,11 +1,11 @@
 import React from 'react';
-
 import Searchbar from './Searchbar';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import { CiMail } from 'react-icons/ci';
 import { IoIosNotifications } from 'react-icons/io';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 interface HeaderProps {
   pageName: string;
   avatar?: string;

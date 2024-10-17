@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import NavigateBtn from './NavigateBtn';
+import React, { useEffect, useState } from 'react';
+import { useRouter as Navigation } from 'next/navigation';
 
 import { FaHome } from 'react-icons/fa';
-import { IoRestaurantSharp } from 'react-icons/io5';
 import { BiFoodMenu } from 'react-icons/bi';
 import { MdMenuBook } from 'react-icons/md';
 import { TbReportSearch } from 'react-icons/tb';
-import { useRouter as Navigation } from 'next/navigation';
+import { IoRestaurantSharp } from 'react-icons/io5';
 
 export const SIDE_BAR_WIDTH = 300;
 

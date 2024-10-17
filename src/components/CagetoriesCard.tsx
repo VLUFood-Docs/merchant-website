@@ -1,13 +1,7 @@
-import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
-import DefaultCagetoryImage from '@/app/assets/images/default-cagetory-image.jpg';
-
-interface CagetoriesCardProps {
-  title: string;
-  image?: StaticImageData;
-  amount: number;
-}
+import Image, { StaticImageData } from 'next/image';
+import DefaultCategoryImage from '@/app/assets/images/default-category-image.jpg';
 
 import {
   Card,
@@ -16,14 +10,20 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 
+interface CagetoriesCardProps {
+  title: string;
+  image?: StaticImageData;
+  amount: number;
+}
+
 const CagetoriesCard = ({ title, image, amount }: CagetoriesCardProps) => {
-  if (!image) image = DefaultCagetoryImage;
+  if (!image) image = DefaultCategoryImage;
   return (
     <Card className="min-w-[200px]">
       <CardHeader className="p-0">
         <Image
           src={image}
-          alt="cagetoryPicture"
+          alt="categoryPicture"
           className="object-cover rounded-xl"
           height={200}
           width={200}

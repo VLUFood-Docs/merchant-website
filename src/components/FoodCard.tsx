@@ -1,17 +1,17 @@
 import React from 'react';
-import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
-import Image, { StaticImageData } from 'next/image';
 
+import Image, { StaticImageData } from 'next/image';
+import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import DefaultFoodImage from '@/app/assets/images/default-food-image.jpg';
 
 interface FoodCardProps {
   title: string;
   image?: StaticImageData;
   price: string;
-  cagetory: string;
+  category: string;
 }
 
-const FoodCard = ({ title, image, price, cagetory }: FoodCardProps) => {
+const FoodCard = ({ title, image, price, category }: FoodCardProps) => {
   if (!image) image = DefaultFoodImage;
   return (
     <Card className="w-[300px]">
@@ -34,7 +34,7 @@ const FoodCard = ({ title, image, price, cagetory }: FoodCardProps) => {
         </div>
         <div className="flex justify-between px-2 w-full items-center">
           <p>Phân loại:</p>
-          <p>{cagetory}</p>
+          <p>{category}</p>
         </div>
       </CardFooter>
     </Card>

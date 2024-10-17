@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  category_id          String      @id @default(uuid()) @unique
+  restaurant_id         String      @db.Char(10)
+  category_name        String      @db.VarChar(50)
+  category_description String?     @db.Text
+  created_at            DateTime?   @db.DateTime()
+  updated_at            DateTime?   @db.DateTime()
+  restaurants            restaurants @relation(fields: [restaurant_id], references: [restaurants_id])
+}
+
+model restaurants {
+  restaurants_id          String        @id @default(uuid()) @unique
+  restaurants_name        String?       @unique(map: "restaurants_name") @db.VarChar(50)
+  restaurants_description String?      @db.Text
+  created_at              DateTime?     @db.DateTime()
+  categories              categories[]
+  username                String       @db.VarChar(50) @unique(map: "username")
+  password                String       @db.VarChar(50)
+  email                   String?       @db.VarChar(50)
+  phone                   String?       @db.VarChar(50)
+  address                 String?       @db.VarChar(50)
+  time_open               String?       @db.VarChar(50)
+  time_close              String?       @db.VarChar(50)
+}

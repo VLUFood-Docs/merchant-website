@@ -1,9 +1,6 @@
-'use client';
-
 import React from 'react';
 
 import { z } from 'zod';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -18,7 +15,6 @@ import {
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
 
 const formSchema = z
   .object({
@@ -34,10 +30,7 @@ const formSchema = z
     password: z
       .string()
       .min(6, { message: 'Mật khẩu phải có ít nhất 6 ký tự.' })
-      .max(20, { message: 'Mật khẩu phải ít hơn 20 ký tự.' })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, {
-        message: 'Mật khẩu phải chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 số',
-      }),
+      .max(20, { message: 'Mật khẩu phải ít hơn 20 ký tự.' }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -45,29 +38,13 @@ const formSchema = z
   });
 
 const RegisterForm = () => {
-  const navigate = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    axios
-      .post('/api/v1/restaurant', values)
-      .then((res) => {
-        if (res.status === 201) {
-          alert('Đăng ký thành công!');
-          setTimeout(() => {
-            navigate.push('/');
-          }, 1500);
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          alert('Username này đã được tạo tài khoản!');
-        } else {
-          alert('Đăng ký thất bại! Vui lòng thử lại sau.');
-        }
-      });
+    console.log(values);
+    // TODO: register logic here
   }
   return (
     <Form {...form}>

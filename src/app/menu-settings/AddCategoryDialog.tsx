@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -40,26 +39,28 @@ const AddCategoryDialog = ({ children }: AddCategoryDialogProps) => {
       })
       .max(50, {
         message: 'Tên category phải ít hơn 50 ký tự.',
+      })
+      .regex(/^[a-zA-Z0-9\s]*$/, {
+        message: 'Tên category chỉ chứa ký tự chữ và số.',
       }),
     categoryDescription: z
       .string()
       .max(100, {
         message: 'Mô tả category phải ít hơn 100 ký tự.',
       })
+      .regex(/^[a-zA-Z0-9\s]*$/, {
+        message: 'Mô tả category chỉ chứa ký tự chữ và số.',
+      })
       .optional(),
-    createdAt: z.date(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { createdAt: new Date() },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
+    // TODO: Add category logic here
   }
 
   return (

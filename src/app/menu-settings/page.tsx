@@ -11,11 +11,7 @@ import CagetoriesCard from '@/components/CagetoriesCard';
 import Sidebar, { SIDE_BAR_WIDTH } from '@/components/Sidebar';
 import AddCategoryDialog from '@/app/menu-settings/AddCategoryDialog';
 
-interface AddFoodProps {
-  type: 'category' | 'food';
-}
-
-const AddFood = ({ type }: AddFoodProps) => {
+const AddFood = () => {
   return (
     <div className="flex items-center gap-2 p-2 bg-destructive rounded-md text-primary-foreground">
       <FaPlus />
@@ -35,7 +31,7 @@ const MenuPage = () => {
         <div className="p-4 w-full">
           <div className="flex items-center gap-4">
             <Typography title="Cagetories:" variant="title" />
-            <AddFood type="category" />
+            <AddFood />
           </div>
           <div
             className={`flex gap-2 overflow-x-auto w-[calc(100vw-${SIDE_BAR_WIDTH}px)] justify-center`}
@@ -53,7 +49,9 @@ const MenuPage = () => {
         <div className="p-4 w-full">
           <div className="flex items-center gap-4">
             <Typography title="Món ăn của bạn:" variant="title" />
-            <AddCategoryDialog children={<AddFood type="food" />} />
+            <AddCategoryDialog>
+              <AddFood />
+            </AddCategoryDialog>
           </div>
           <div
             className={`w-[calc(100vw-${SIDE_BAR_WIDTH}px)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 justify-items-center`}
